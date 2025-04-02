@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway - Telebir Ethiopia</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .payment-content {
+            padding: 30px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-method {
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method:hover {
+            border-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 86, 179, 0.2);
+        }
+        
+        .payment-method.active {
+            border-color: #0056b3;
+            background-color: #f0f7ff;
+        }
+        
+        .payment-method img {
+            height: 40px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .payment-form {
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .amount-input {
+            position: relative;
+        }
+        
+        .amount-input span {
+            position: absolute;
+            left: 12px;
+            top: 12px;
+            font-weight: bold;
+        }
+        
+        .amount-input input {
+            padding-left: 30px;
+        }
+        
+        .btn {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #003d82;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .telebir-instructions {
+            background-color: #f8f9fa;
+            border-left: 4px solid #0056b3;
+            padding: 15px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .payment-method {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Secure Payment Gateway</h1>
+        </div>
+        
+        <div class="payment-content">
+            <h2>Payment Details</h2>
+            <p>Complete your purchase by providing your payment information</p>
+            
+            <div class="payment-methods">
+                <div class="payment-method" onclick="selectPaymentMethod('telebir')">
+                    <img src="https://telebirr.ethiotelecom.et/images/telebirr-logo.png" alt="Telebirr Logo">
+                    <h3>Telebirr</h3>
+                    <p>Ethiopia's digital payment solution</p>
+                </div>
+                
+                <div class="payment-method" onclick="selectPaymentMethod('card')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Credit Card">
+                    <h3>Credit/Debit Card</h3>
+                    <p>Visa, Mastercard, etc.</p>
+                </div>
+                
+                <div class="payment-method" onclick="selectPaymentMethod('bank')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2331/2331716.png" alt="Bank Transfer">
+                    <h3>Bank Transfer</h3>
+                    <p>Direct bank transfer</p>
+                </div>
+            </div>
+            
+            <div class="payment-form">
+                <div class="form-group">
+                    <label for="amount">Payment Amount</label>
+                    <div class="amount-input">
+                        <span>ETB</span>
+                        <input type="number" id="amount" placeholder="0.00" min="1" step="0.01" required>
+                    </div>
+                </div>
+                
+                <div id="telebir-instructions" class="telebir-instructions">
+                    <h3>How to pay with Telebirr:</h3>
+                    <ol>
+                        <li>Enter your Telebirr registered phone number below</li>
+                        <li>Check your phone for a confirmation request</li>
+                        <li>Enter your Telebirr PIN to confirm payment</li>
+                        <li>You'll receive a payment confirmation SMS</li>
+                    </ol>
+                    
+                    <div class="form-group">
+                        <label for="telebir-phone">Telebirr Registered Phone Number</label>
+                        <input type="tel" id="telebir-phone" placeholder="09XXXXXXXX" pattern="09[0-9]{8}">
+                    </div>
+                </div>
+                
+                <div id="card-details" style="display: none;">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                    </div>
+                    
+                    <div style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="expiry">Expiry Date</label>
+                            <input type="text" id="expiry" placeholder="MM/YY">
+                        </div>
+                        
+                        <div class="form-group" style="flex: 1;">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="bank-details" style="display: none;">
+                    <div class="form-group">
+                        <label for="bank-name">Bank Name</label>
+                        <select id="bank-name">
+                            <option value="">Select Bank</option>
+                            <option value="cbe">Commercial Bank of Ethiopia</option>
+                            <option value="awash">Awash Bank</option>
+                            <option value="dashen">Dashen Bank</option>
+                            <option value="abyssinia">Bank of Abyssinia</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="account-number">Account Number</label>
+                        <input type="text" id="account-number" placeholder="Enter account number">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="processPayment()">Complete Payment</button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Payment Gateway. All rights reserved.</p>
+            <p>Powered by Telebirr Ethiopia</p>
+        </div>
+    </div>
+    
+    <script>
+        let selectedMethod = '';
+        
+        function selectPaymentMethod(method) {
+            selectedMethod = method;
+            
+            // Update UI for selected method
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Show relevant form
+            document.getElementById('telebir-instructions').style.display = 'none';
+            document.getElementById('card-details').style.display = 'none';
+            document.getElementById('bank-details').style.display = 'none';
+            
+            if (method === 'telebir') {
+                document.getElementById('telebir-instructions').style.display = 'block';
+            } else if (method === 'card') {
+                document.getElementById('card-details').style.display = 'block';
+            } else if (method === 'bank') {
+                document.getElementById('bank-details').style.display = 'block';
+            }
+        }
+        
+        function processPayment() {
+            const amount = document.getElementById('amount').value;
+            
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid payment amount');
+                return;
+            }
+            
+            if (!selectedMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            if (selectedMethod === 'telebir') {
+                const phone = document.getElementById('telebir-phone').value;
+                if (!phone || !/^09[0-9]{8}$/.test(phone)) {
+                    alert('Please enter a valid Telebirr registered phone number (09XXXXXXXX)');
+                    return;
+                }
+                
+                // In a real implementation, you would call Telebirr's API here
+                alert(`Initiating Telebirr payment of ETB ${amount} to phone number ${phone}. This would redirect to Telebirr for payment confirmation in a real implementation.`);
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    alert('Payment successful! You will receive a confirmation SMS from Telebirr.');
+                    // Here you would typically redirect to a success page or update your database
+                }, 2000);
+                
+            } else if (selectedMethod === 'card') {
+                alert(`Processing card payment of ETB ${amount}`);
+                // Card processing logic would go here
+            } else if (selectedMethod === 'bank') {
+                alert(`Initiating bank transfer of ETB ${amount}`);
+                // Bank transfer logic would go here
+            }
+        }
+        
+        // Initialize with Telebirr selected by default
+        window.onload = function() {
+            selectPaymentMethod('telebir');
+        };
+    </script>
+</body>
+</html>

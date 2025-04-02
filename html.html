@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn HTML - Infinity AI</title>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #2b2d42;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f72585;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        nav {
+            background-color: var(--dark);
+            padding: 1rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .course-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .course-header h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .course-header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .chapter {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .chapter-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chapter-content {
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .chapter.active .chapter-content {
+            display: block;
+        }
+        
+        .lesson {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .lesson:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .lesson h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .lesson p {
+            margin-bottom: 1rem;
+        }
+        
+        .code-example {
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+        
+        .interactive-editor {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+        
+        .editor-header {
+            background-color: #f0f0f0;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .editor-content {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            font-family: 'Courier New', Courier, monospace;
+            resize: vertical;
+        }
+        
+        .editor-preview {
+            padding: 1rem;
+            min-height: 100px;
+        }
+        
+        .run-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .run-btn:hover {
+            background-color: #3aa8d8;
+        }
+        
+        .quiz {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .quiz h4 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .quiz-option {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quiz-option:hover {
+            border-color: var(--accent);
+        }
+        
+        .quiz-option.correct {
+            background-color: #e6f7ee;
+            border-color: #28a745;
+        }
+        
+        .quiz-option.incorrect {
+            background-color: #fce8e8;
+            border-color: #dc3545;
+        }
+        
+        .progress-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+            
+            .editor-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="infinity-logo.png" alt="Infinity AI Logo">
+            <h1>Infinity AI</h1>
+        </div>
+        <p>Learn HTML from Zero to Hero</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="course-header">
+            <h2>HTML Fundamentals</h2>
+            <p>Master the building blocks of web development with our comprehensive HTML course. Learn by doing with interactive examples and quizzes.</p>
+        </div>
+        
+        <div class="chapter active">
+            <div class="chapter-header">
+                <h3>Chapter 1: Introduction to HTML</h3>
+                <span>▼</span>
+            </div>
+            <div class="chapter-content">
+                <div class="lesson">
+                    <h3>What is HTML?</h3>
+                    <p>HTML (HyperText Markup Language) is the standard markup language for creating web pages. It describes the structure of a web page.</p>
+                    <p>HTML consists of a series of elements that tell browsers how to display content.</p>
+                    
+                    <div class="code-example">
+                        <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;My First Heading&lt;/h1&gt;
+    &lt;p&gt;My first paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                    </div>
+                </div>
+                
+                <div class="lesson">
+                    <h3>HTML Elements</h3>
+                    <p>An HTML element is defined by a start tag, some content, and an end tag:</p>
+                    <div class="code-example">
+                        &lt;tagname&gt;Content goes here...&lt;/tagname&gt;
+                    </div>
+                    
+                    <div class="interactive-editor">
+                        <div class="editor-header">
+                            <h4>Try it Yourself</h4>
+                            <button class="run-btn">Run Code</button>
+                        </div>
+                        <div class="editor-content">
+                            <textarea id="editor1">&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;p&gt;This is another paragraph.&lt;/p&gt;</textarea>
+                            <div class="editor-preview" id="preview1"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz">
+                        <h4>Quick Quiz</h4>
+                        <p>What does HTML stand for?</p>
+                        <div class="quiz-option">Hyperlinks and Text Markup Language</div>
+                        <div class="quiz-option correct">HyperText Markup Language</div>
+                        <div class="quiz-option">Home Tool Markup Language</div>
+                        <div class="quiz-option">Hyper Text Making Language</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <div class="chapter-header">
+                <h3>Chapter 2: Basic HTML Tags</h3>
+                <span>▼</span>
+            </div>
+            <div class="chapter-content">
+                <div class="lesson">
+                    <h3>Headings</h3>
+                    <p>HTML headings are defined with the &lt;h1&gt; to &lt;h6&gt; tags.</p>
+                    <p>&lt;h1&gt; defines the most important heading. &lt;h6&gt; defines the least important heading.</p>
+                    
+                    <div class="interactive-editor">
+                        <div class="editor-header">
+                            <h4>Try it Yourself</h4>
+                            <button class="run-btn">Run Code</button>
+                        </div>
+                        <div class="editor-content">
+                            <textarea id="editor2">&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</textarea>
+                            <div class="editor-preview" id="preview2"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lesson">
+                    <h3>Paragraphs and Links</h3>
+                    <p>The &lt;p&gt; tag defines a paragraph. The &lt;a&gt; tag defines a hyperlink.</p>
+                    
+                    <div class="code-example">
+                        &lt;p&gt;This is a paragraph.&lt;/p&gt;
+                        &lt;p&gt;This is another paragraph.&lt;/p&gt;
+                        &lt;a href="https://www.example.com"&gt;This is a link&lt;/a&gt;
+                    </div>
+                    
+                    <div class="quiz">
+                        <h4>Quick Quiz</h4>
+                        <p>Which tag is used to create a hyperlink?</p>
+                        <div class="quiz-option">&lt;link&gt;</div>
+                        <div class="quiz-option">&lt;hl&gt;</div>
+                        <div class="quiz-option correct">&lt;a&gt;</div>
+                        <div class="quiz-option">&lt;hyperlink&gt;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <h4>Your Progress</h4>
+            <p>You've completed 25% of the HTML course</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 25%;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 Infinity AI. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle chapters
+        const chapterHeaders = document.querySelectorAll('.chapter-header');
+        chapterHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                header.parentElement.classList.toggle('active');
+            });
+        });
+        
+        // Interactive editors
+        function setupEditor(editorId, previewId) {
+            const editor = document.getElementById(editorId);
+            const preview = document.getElementById(previewId);
+            const runBtn = editor.closest('.interactive-editor').querySelector('.run-btn');
+            
+            runBtn.addEventListener('click', () => {
+                preview.innerHTML = editor.value;
+            });
+        }
+        
+        setupEditor('editor1', 'preview1');
+        setupEditor('editor2', 'preview2');
+        
+        // Quiz functionality
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        quizOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                if (this.classList.contains('correct')) {
+                    this.classList.add('correct');
+                    alert('Correct answer! 🎉');
+                } else {
+                    this.classList.add('incorrect');
+                    alert('Oops! Try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
