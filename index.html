@@ -1,171 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Israel Dereje Mengistu - Young Coder</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f9ff;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 2.2em;
-        }
-        
-        .age {
-            color: #7f8c8d;
-            font-weight: normal;
-            font-size: 1.1em;
-        }
-        
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 20px auto;
-            display: block;
-            border: 5px solid #e0f7fa;
-        }
-        
-        section {
-            margin-bottom: 25px;
-        }
-        
-        h2 {
-            color: #2980b9;
-            border-bottom: 2px solid #e0f7fa;
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-        
-        .certificate {
-            background-color: #e8f4f8;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .certificate img {
-            width: 60px;
-            margin-right: 15px;
-        }
-        
-        .certificate-info h3 {
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .skill {
-            background-color: #2980b9;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                margin: 20px;
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 1.8em;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ryan Montgomery - Graphic Designer & Video Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      border-bottom: 2px solid #111;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .portfolio-item {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <!-- Replace with your actual photo if available -->
-            <img src="https://via.placeholder.com/150" alt="Israel Dereje Mengistu" class="profile-pic">
-            <h1>Israel Dereje Mengistu <span class="age">15 years old</span></h1>
-            <p>Young Programmer & Technology Enthusiast</p>
-        </header>
-        
-        <section>
-            <h2>About Me</h2>
-            <p>Hello! I'm Israel Dereje Mengistu, a 15-year-old student with a passion for coding and technology. I'm enthusiastic about learning new programming skills and applying them to solve real-world problems.</p>
-            
-            <div class="skills">
-                <span class="skill">HTML</span>
-                <span class="skill">CSS</span>
-                <span class="skill">JavaScript</span>
-                <span class="skill">Python</span>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Certifications</h2>
-            <div class="certificate">
-                <!-- Replace with your actual certificate image if available -->
-                <img src="https://via.placeholder.com/60" alt="5 Million Coders Certificate">
-                <div class="certificate-info">
-                    <h3>5 Million Coders Program</h3>
-                    <p>Successfully completed the training program with 5 Million Coders, gaining foundational programming skills and knowledge.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <h2>Goals</h2>
-            <ul style="margin-left: 20px;">
-                <li>Continue developing my programming skills</li>
-                <li>Build useful applications that help my community</li>
-                <li>Learn advanced computer science concepts</li>
-                <li>Collaborate with other young programmers</li>
-            </ul>
-        </section>
-        
-        <footer>
-            <p>© 2025 Israel Dereje Mengistu. All rights reserved.</p>
-            <p>Contact me at: [your email or social media links would go here]</p>
-        </footer>
-    </div>
+
+  <header>
+    <h1>Ryan Montgomery</h1>
+    <p>Graphic Designer - Video Editor - Creative Storyteller</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>I am a graphic designer and video editor who creates modern, eye-catching visuals and engaging video content. My goal is to help brands and individuals tell their stories through impactful design and high-quality video production.</p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>Email: <a href="https://mail.google.com/mail/u/0/#search/in%3Asent+israeldereje01%40gmail.com">israeldereje01@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/ryan-montgomery-261b9037a/">https://www.linkedin.com/in/ryan-montgomery-261b9037a/</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Ryan Montgomery. All Rights Reserved.</p>
+  </footer>
+
 </body>
 </html>
